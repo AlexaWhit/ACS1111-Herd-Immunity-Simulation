@@ -18,6 +18,40 @@ Python program which utilizes OOP to model how a virus moves through a populatio
 9. Resolve the states of all individuals that started the turn infected by determining if they die or survive the infection, and change the appropriate attributes.
 10. The simulation should output a logfile that contains a record of every interaction that occurred during the simulation. We will use this logfile to determine final statistics and answer questions about the simulation.
 
+## Running the Program
+The program is designed to be run from the command line. You can do this by running
+
+python3 simulation.py
+followed by the command line arguments in the following order, separated by spaces: {population size} {vacc_percentage} {virus_name} {mortality_rate} {repro_rate} {optional: number of people initially infected (default is 1)}
+
+Let's look at an example:
+
+Population Size: 100,000
+
+Vaccination Percentage: 90%
+
+Virus Name: Ebola
+
+Mortality Rate: 70%
+
+Reproduction Rate: 25%
+
+People Initially Infected: 10
+
+Then I would type:
+
+python3 simulation.py 100000 0.90 Ebola 0.70 0.25 10
+in the terminal.
+
+## Basic Structure
+The program consists of 4 classes: Person, Virus, Simulation, and Logger.
+
+Simulation: Highest level of abstraction. The main class that runs the entire simulation.
+Person: Represents the people that make up the population that the virus is spreading through.
+Virus: Models the properties of the virus we wish to simulate.
+Logger: A helper class for logging all events that happen in the simulation.
+When you run simulation.py with the corresponding command-line arguments necessary for a simulation, a simulation object is created. This simulation object then calls the .run() method. This method should continually check if the simulation needs to run another step using a helper method contained in the class, and then call .time_step() if the simulation has not ended yet. Within the time_step() method, you'll find all the logic necessary for actually simulating everything--that is, once you write it. As is, the file just contains a bunch of method stubs, as well as numerous comments for explaining what you need to do to get everything working.
+
 
 ## Usage
 The program is designed to be run from the command line. You can do this by running
