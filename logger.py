@@ -28,11 +28,17 @@ class Logger(object):
         # the 'a' mode to append a new log to the end, since 'w' overwrites the file.
         # NOTE: Make sure to end every line with a '/n' character to ensure that each
         # event logged ends up on a separate line!
-        filename = open(self.file_name, "w")
-        filename.write('ACS1111 Herd Immunity Simulation\n')
+        file = open(self.file_name, "w")
+        file.write('ACS1111 Herd Immunity Simulation\n')
 
         #Statistics
-        file.write(f"")
+        file.write(f"Virus: {virus_name}\n")
+        file.write(f"Reproductive Rate: {basic_repro_num}%\n")
+        file.write(f"Initial Population Size: {pop_size}\n")
+        file.write(f"Mortality Rate: {mortality_rate}%\n")
+        file.write(f"Vaccination Rate: {vacc_percentage}%\n")
+
+        file.close()
 
     def log_interactions(self, step_number, number_of_interactions, number_of_new_infections):
         # TODO: Finish this method. Think about how the booleans passed (or not passed)
