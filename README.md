@@ -1,4 +1,4 @@
-https://eyewiki.aao.org/w/images/1/e/e3/17768_lores.jpg
+![alt text](https://eyewiki.aao.org/w/images/1/e/e3/17768_lores.jpg)
 
 # ACS1111: Herd Immunity Simulation
 Python OOP Program
