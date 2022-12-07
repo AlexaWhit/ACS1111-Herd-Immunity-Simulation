@@ -29,9 +29,10 @@ class Logger(object):
         # NOTE: Make sure to end every line with a '/n' character to ensure that each
         # event logged ends up on a separate line!
         filename = open(self.file_name, "w")
-        filename.write(
-            
-        )
+        filename.write('ACS1111 Herd Immunity Simulation\n')
+
+        #Statistics
+        file.write(f"")
 
     def log_interactions(self, step_number, number_of_interactions, number_of_new_infections):
         # TODO: Finish this method. Think about how the booleans passed (or not passed)
