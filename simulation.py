@@ -34,15 +34,18 @@ class Simulation(object):
         # The number of infected people should be equal to the the initial_infected
         # TODO: Return the list of people
         people = []
-        i = 0
-        for infected_person in range(self.initial_infected):
-            infected_group = Person(i, False, self.virus)
-            people.append(infected_group)
-        i = self.initial_infected + 1
-        for uninfected_person in range(self.pop_size - self.initial_infected):
-            uninfected_group = Person(i, False)
-            people.append(uninfected_group)
+        number_vaccinated = int((self.vacc_percentage/100) * self.pop_size)
+        for i in range(1, int(self.pop_size)+1):
+            if i<= self.initial_infected:
+                person = Person(i, False, self.virus)
+            elif number_vaccinated > 0:
+                person = Person(i, True)
+                number_vaccinated -=1
+            else: 
+                person = Person(i, False)
+            people.append(person)
         return people
+
 
     def _simulation_should_continue(self):
         # This method will return a booleanb indicating if the simulation 
@@ -51,7 +54,8 @@ class Simulation(object):
         # or if all of the living people have been vaccinated. 
         # TODO: Loop over the list of people in the population. Return True
         # if the simulation should continue or False if not.
-        for person in self.population:
+
+        for person in self.people:
             if person.is_alive == True and person.is_vaccinated == False:
                 return True
         return False
@@ -66,9 +70,9 @@ class Simulation(object):
 
         while should_continue:
             # TODO: Increment the time_step_counter
-            time_step_counter +1
+            time_step_counter += 1
             # TODO: for every iteration of this loop, call self.time_step() 
-            self.time_step()
+            self.time_step(time_step_counter)
             # Call the _simulation_should_continue method to determine if 
             # the simulation should continue
             should_continue = self._simulation_should_continue()
@@ -77,9 +81,12 @@ class Simulation(object):
         # TODO: Write meta data to the logger. This should be starting 
         # statistics for the simulation. It should include the initial
         # population size and the virus. 
-        
+        self.logger.write_metadata(self.pop_size, self.vacc_percentage, self.virus.name, self.virus.mortality_rate, self.virus.repro_rate)
+
         # TODO: When the simulation completes you should conclude this with 
         # the logger. Send the final data to the logger. 
+        self.logger.log_completion_summary()
+
 
     def time_step(self):
         # This method will simulate interactions between people, calulate 
