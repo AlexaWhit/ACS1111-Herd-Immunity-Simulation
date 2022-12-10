@@ -1,9 +1,7 @@
 class Virus(object):
     # Properties and attributes of the virus used in Simulation.
     def __init__(self, name, repro_rate, mortality_rate):
-        # Define the attributes of your your virus
         self.name = name
-        # TODO Define the other attributes of Virus
         self.repro_rate = repro_rate 
         self.mortality_rate = mortality_rate
 
@@ -20,3 +18,24 @@ if __name__ == "__main__":
     print(virus.name)
     print(virus.repro_rate) 
     print(virus.mortality_rate)
+
+    # Two Additional Tests
+    ebola = Virus("Ebola", 1.51, 0.5 )
+    assert ebola.name == "Ebola"
+    assert ebola.repro_rate == 1.51
+    assert ebola.mortality_rate == 0.5
+
+    print("-------------------------")
+    print(ebola.name)
+    print(ebola.repro_rate) 
+    print(ebola.mortality_rate)
+
+    smallpox = Virus("Smallpox", 6.87, 0.8 )
+    assert smallpox.name == "Smallpox"
+    assert smallpox.repro_rate == 6.87
+    assert smallpox.mortality_rate == 0.8
+
+    print("-------------------------")
+    print(smallpox.name)
+    print(smallpox.repro_rate) 
+    print(smallpox.mortality_rate)
