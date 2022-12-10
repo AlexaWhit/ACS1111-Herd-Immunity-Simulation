@@ -36,11 +36,11 @@ class Logger(object):
         file.write(f"\t Time Step Number: {time_step_number}")
         file.close()
 
-    def log_final_summary(self, current_vaccinated, total_dead, total_alive ):
+    def log_final_summary(self, current_vaccinated, total_infected, total_dead, total_alive ):
         '''
         This method logs the final results of the simulation, to include the number of people vaccinated, the number of
         people alive and the number of dead. 
         '''
         file = open(self.file_name, "a")
-        file.write(f"\t Total People Vaccinated: {current_vaccinated}\n\t Total People Alive: {total_alive}\n\t Total People Dead: {total_dead}.")
+        file.write(f"\t Total People Vaccinated: {current_vaccinated}\n\t Total People Infected: {total_infected}\n\t Total People Alive: {total_alive}\n\t Total People Dead: {total_dead}.")
         file.close()

@@ -1,0 +1,8 @@
+	 Virus: 1000
+		Reproductive Rate: 0.1%
+		Initial Population Size: 1000
+		Mortality Rate: 10%
+		Vaccination Rate: 0.1%
+	 Time Step Number: 1	 Step Number: 1
+	 Number of Interactions: 1000
+	 Number of New Infections: 101
