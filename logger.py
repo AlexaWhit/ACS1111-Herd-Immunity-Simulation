@@ -2,25 +2,13 @@ class Logger(object):
     def __init__(self, file_name):
         self.file_name = file_name
 
-    # You should log the results of each step. This should inlcude: 
-    #   The population size, the number of living, the number of dead, and the number 
-    #   of vaccinated people at that step. 
-    # When the simulation concludes you should log the results of the simulation. 
-    # This should include: 
-    #   The population size, the number of living, the number of dead, the number 
-    #   of vaccinated, and the number of steps to reach the end of the simulation. 
-
     def write_metadata(self, pop_size, vacc_percentage, virus_name, mortality_rate,
                        basic_repro_num):
         '''
         This method logs the initial starting metadata (including population, initial infected,
         the virus, and the initial vaccinated.
         '''
-
         file = open(self.file_name, "w")
-        file.write('ACS1111 Herd Immunity Simulation\n')
-
-        #Statistics
         file.write(f"\t Virus: {virus_name}\n\t\tReproductive Rate: {basic_repro_num}%\n\t\tInitial Population Size: {pop_size}\n\t\tMortality Rate: {mortality_rate}%\n\t\tVaccination Rate: {vacc_percentage}%\n")
         file.close()
 
@@ -28,7 +16,6 @@ class Logger(object):
         '''
         This method logs the steps, number of interactions, and the number of new infections.
         '''
-
         file = open(self.file_name, "a")
         file.write(f"\t Step Number: {step_number}\n\t Number of Interactions: {number_of_interactions}\n\t Number of New Infections: {number_of_new_infections}\n")
         file.close()
@@ -37,7 +24,6 @@ class Logger(object):
         '''
         This method logs if the person survived, the currentl population count, and the number of new fatalities at each step.
         '''
-
         file = open(self.file_name, "a")
         file.write(f"\t Step Number: {step_number}\n\t Current Population: {population_count}\n\t Number of New Deaths: {number_of_new_fatalities}\n")
         file.close()
@@ -50,9 +36,11 @@ class Logger(object):
         file.write(f"\t Time Step Number: {time_step_number}")
         file.close()
 
-    def log_final_summary(self):
+    def log_final_summary(self, current_vaccinated, total_dead, total_alive ):
         '''
-        This method logs the final results of the simulation, to include population size, the number of living, 
-        the number of dead, the number of vaccinated, and the number of steps to reach the end of the simulation. 
+        This method logs the final results of the simulation, to include the number of people vaccinated, the number of
+        people alive and the number of dead. 
         '''
-        pass
+        file = open(self.file_name, "a")
+        file.write(f"\t Total People Vaccinated: {current_vaccinated}\n\t Total People Alive: {total_alive}\n\t Total People Dead: {total_dead}.")
+        file.close()

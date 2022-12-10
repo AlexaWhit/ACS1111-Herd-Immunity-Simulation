@@ -14,18 +14,30 @@ class Simulation(object):
         vacc_percentage: number
         initial+infected: number
         '''
-        # Create a Logger object and bind it to self.logger.
-        self.logger = Logger('logger')
+        logger = Logger("logger.txt")
+        self.logger = logger
+        self.file_name = f"{virus.name}.md"
         self.virus = virus
         self.pop_size = pop_size
         self.vacc_percentage = vacc_percentage
         self.initial_infected = initial_infected
+
         self.people = []
-        self.population = self._create_population()
+        
         self.newly_infected= []
         self.total_infected = []
         self.prevented_infection = []
         self.number_of_interactions = 0
+        self.current_vaccinated = 0
+        self.current_infected = 0
+        self.current_deaths = 0
+        self.total_alive = 0
+        self.total_dead = 0
+        self.total_infected = 0
+        self.time_step_counter = 0
+        self.population = self._create_population()
+        
+        
 
         
 
@@ -76,9 +88,7 @@ class Simulation(object):
             should_continue = self._simulation_should_continue()
             
 
-        # TODO: Write meta data to the logger. This should be starting 
-        # statistics for the simulation. It should include the initial
-        # population size and the virus. 
+        # Write meta data to the logger.
         self.logger.write_metadata(self.pop_size, self.vacc_percentage, self.virus.name, self.virus.mortality_rate, self.virus.repro_rate)
 
         # TODO: When the simulation completes you should conclude this with 
