@@ -21,38 +21,33 @@ class Logger(object):
         file.write('ACS1111 Herd Immunity Simulation\n')
 
         #Statistics
-        file.write(f"Virus: {virus_name}\n\t\tReproductive Rate: {basic_repro_num}%\n\t\tInitial Population Size: {pop_size}\n\t\tMortality Rate: {mortality_rate}%\n\t\tVaccination Rate: {vacc_percentage}%\n")
+        file.write(f"\t Virus: {virus_name}\n\t\tReproductive Rate: {basic_repro_num}%\n\t\tInitial Population Size: {pop_size}\n\t\tMortality Rate: {mortality_rate}%\n\t\tVaccination Rate: {vacc_percentage}%\n")
         file.close()
 
     def log_interactions(self, step_number, number_of_interactions, number_of_new_infections):
         '''
         This method logs the steps, number of interactions, and the number of new infections.
         '''
-        # TODO: Finish this method. Think about how the booleans passed (or not passed)
-        # represent all the possible edge cases. Use the values passed along with each person,
-        # along with whether they are sick or vaccinated when they interact to determine
-        # exactly what happened in the interaction and create a String, and write to your logfile.
+
         file = open(self.file_name, "a")
-        file.write(f"Step Number: {step_number}********\n\t Number of Interactions: {number_of_interactions}\n\t Number of New Infections: {number_of_new_infections}\n")
+        file.write(f"\t Step Number: {step_number}\n\t Number of Interactions: {number_of_interactions}\n\t Number of New Infections: {number_of_new_infections}\n")
         file.close()
 
     def log_infection_survival(self, step_number, population_count, number_of_new_fatalities):
         '''
-        This method logs the infection survival statistics to include
+        This method logs if the person survived, the currentl population count, and the number of new fatalities at each step.
         '''
-        # TODO: Finish this method. If the person survives, did_die_from_infection
-        # should be False.  Otherwise, did_die_from_infection should be True.
-        # Append the results of the infection to the logfile
-        file = open(self.file_name, "w")
 
+        file = open(self.file_name, "a")
+        file.write(f"\t Step Number: {step_number}\n\t Current Population: {population_count}\n\t Number of New Deaths: {number_of_new_fatalities}\n")
         file.close()
 
     def log_time_step(self, time_step_number):
         '''
         This method creates a line separation for each step.
         '''
-        file = open(self.file_name, "w")
-
+        file = open(self.file_name, "a")
+        file.write(f"\t Time Step Number: {time_step_number}")
         file.close()
 
     def log_final_summary(self):
