@@ -20,6 +20,8 @@ class Simulation(object):
         self.initial_infected = initial_infected
         self.people = []
         self.population = self._create_population()
+        self.newly_infected= []
+        self.total_infected = []
         # You need to store a list of people (Person instances)
         # Some of these people will be infected some will not. 
         # Use the _create_population() method to create the list and 
@@ -88,22 +90,23 @@ class Simulation(object):
         self.logger.log_completion_summary()
 
 
-    def time_step(self):
+    def time_step(self, time_step_number):
         # This method will simulate interactions between people, calulate 
         # new infections, and determine if vaccinations and fatalities from infections
         # The goal here is have each infected person interact with a number of other 
         # people in the population
+        interactions = 0
         # TODO: Loop over your population
-        for person in self.population:
+        for person in self.people:
         # For each person if that person is infected
             if person.infection != None and person.is_alive:
         # have that person interact with 100 other living people 
         # Run interactions by calling the interaction method below. That method
         # takes the infected person and a random person
-                random_interaction = random.sample(self.population, self.average_interactions)
-                for random_person in random_interaction:
-                    self.interaction(person, random_person)
-        pass
+                random_interaction = random.randint(0, self.pop_size-1)
+                self.interaction(person, self.people[random_interaction])
+                interactions += 1
+        
 
     def interaction(self, infected_person, random_person):
         # TODO: Finish this method.
@@ -118,7 +121,12 @@ class Simulation(object):
             #     Simulation object's newly_infected array, so that their infected
             #     attribute can be changed to True at the end of the time step.
         # TODO: Call logger method during this method.
-        pass
+        if random_person.is_vaccinated == False and random.person.is_alive == True and random_person.infection == None:
+            random_number = random.random()
+            if random_number < self.virus.repro_rate:
+                self.newly_infected.append(random_person)
+                self.total_infected += 1
+
 
     def _infect_newly_infected(self):
         # TODO: Call this method at the end of every time step and infect each Person.
