@@ -22,6 +22,7 @@ class Simulation(object):
         self.population = self._create_population()
         self.newly_infected= []
         self.total_infected = []
+        self.prevented_infection = []
         # You need to store a list of people (Person instances)
         # Some of these people will be infected some will not. 
         # Use the _create_population() method to create the list and 
@@ -124,8 +125,11 @@ class Simulation(object):
         if random_person.is_vaccinated == False and random.person.is_alive == True and random_person.infection == None:
             random_number = random.random()
             if random_number < self.virus.repro_rate:
-                self.newly_infected.append(random_person)
                 self.total_infected += 1
+                if random_person not in self.newly_infected:
+                    self.newly_infected.append(random_person)
+        elif random_person.is_vaccinated == True and random_person.is_alive == True and random_person.infection == None:
+            self.prevented_infection += 1
 
 
     def _infect_newly_infected(self):
