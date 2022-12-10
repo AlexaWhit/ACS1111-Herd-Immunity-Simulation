@@ -134,9 +134,14 @@ class Simulation(object):
 
     def _infect_newly_infected(self):
         # TODO: Call this method at the end of every time step and infect each Person.
+        for person in self.people:
+            if person in self.newly_infected:
+                person.infection = self.virus
+                self.infected_individuals += 1
         # TODO: Once you have iterated through the entire list of self.newly_infected, remember
         # to reset self.newly_infected back to an empty list.
-        pass
+        self.newly_infected = []
+
 
 
 if __name__ == "__main__":
