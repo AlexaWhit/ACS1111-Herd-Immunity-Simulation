@@ -44,3 +44,4 @@ class Logger(object):
         file = open(self.file_name, "a")
         file.write(f"\t Total People Vaccinated: {current_vaccinated}\n\t Total People Infected: {total_infected}\n\t Total People Alive: {total_alive}\n\t Total People Dead: {total_dead}.")
         file.close()
+        
